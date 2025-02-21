@@ -6,20 +6,19 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create({ auth, project }) {
+export default function Create({ auth }) {
   const { data, setData, post, errors, reset } = useForm({
     image: "",
-    name: project.name || "",
-    status: project.status || "",
-    description: project.description || "",
-    due_date: project.due_date || "",
-    _method: "PUT",
+    name: "",
+    status: "",
+    description: "",
+    due_date: "",
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    post(route("project.update", project.id));
+    post(route("project.store"));
   };
 
   return (
@@ -28,7 +27,7 @@ export default function Create({ auth, project }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Edit project "{project.name}"
+            Create new Project
           </h2>
         </div>
       }
@@ -42,11 +41,6 @@ export default function Create({ auth, project }) {
               onSubmit={onSubmit}
               className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
             >
-              {project.image_path && (
-                <div className="mb-4">
-                  <img src={project.image_path} className="w-64" />
-                </div>
-              )}
               <div>
                 <InputLabel
                   htmlFor="project_image_path"
@@ -60,53 +54,6 @@ export default function Create({ auth, project }) {
                   onChange={(e) => setData("image", e.target.files[0])}
                 />
                 <InputError message={errors.image} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel htmlFor="project_name" value="Project Name" />
-
-                <TextInput
-                  id="project_name"
-                  type="text"
-                  name="name"
-                  value={data.name}
-                  className="mt-1 block w-full"
-                  isFocused={true}
-                  onChange={(e) => setData("name", e.target.value)}
-                />
-
-                <InputError message={errors.name} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel
-                  htmlFor="project_description"
-                  value="Project Description"
-                />
-
-                <TextAreaInput
-                  id="project_description"
-                  name="description"
-                  value={data.description}
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("description", e.target.value)}
-                />
-
-                <InputError message={errors.description} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel
-                  htmlFor="project_due_date"
-                  value="Project Deadline"
-                />
-
-                <TextInput
-                  id="project_due_date"
-                  type="date"
-                  name="due_date"
-                  value={data.due_date}
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("due_date", e.target.value)}
-                />
-<InputError message={errors.image} className="mt-2" />
               </div>
               <div className="mt-4">
                 <InputLabel htmlFor="project_name" value="Project Name" />
@@ -191,4 +138,3 @@ export default function Create({ auth, project }) {
     </AuthenticatedLayout>
   );
 }
-              
