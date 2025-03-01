@@ -1,4 +1,4 @@
-Here’s the complete code for the updated README file that you can directly paste into VS Code:
+
 
 ```markdown
 # Project Management System
