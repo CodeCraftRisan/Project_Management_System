@@ -1,6 +1,3 @@
-
-
-```markdown
 # Project Management System
 
 ![License](https://img.shields.io/github/license/CodeCraftRisan/Project_Management_System) ![Issues](https://img.shields.io/github/issues/CodeCraftRisan/Project_Management_System)
@@ -20,7 +17,8 @@ Project Management System is a single-page application combining the power of La
 ---
 
 ## Demo
-https://www.figma.com/design/YA0NVYITNM5sM2FkNEOYGm/Untitled?node-id=0-1&p=f&t=HBDCL8goOBeMCjEK-0
+[Live Demo](https://example.com) <!-- Replace with a real live demo URL -->
+
 ---
 
 ## Tech Stack
@@ -120,6 +118,7 @@ export default ExampleComponent;
 - Enhanced query optimization for large datasets.
 - Implemented lazy loading for React components.
 - Improved error handling across API endpoints.
+
 
 ---
 
