@@ -1,3 +1,6 @@
+
+
+```markdown
 # Project Management System
 
 ![License](https://img.shields.io/github/license/CodeCraftRisan/Project_Management_System) ![Issues](https://img.shields.io/github/issues/CodeCraftRisan/Project_Management_System)
@@ -120,6 +123,36 @@ export default ExampleComponent;
 
 ---
 
+## Checkpoints
+
+### Checkpoint 1
+| Task                                                | Status |
+|-----------------------------------------------------|--------|
+| 1. Setup Project                                     | ✅     |
+| 2. Prepare the Database (Backend)                   | ✅     |
+| 3. Create Controllers and Define Routes (Backend)   | ✅     |
+| 4. Render Projects with Pagination (Frontend)       | ✅     |
+| 5. Filtering Projects (Frontend)                    | ✅     |
+| 6. Sorting Projects (Frontend)                      | ✅     |
+
+### Checkpoint 2
+| Task                                                | Status |
+|-----------------------------------------------------|--------|
+| 1. Render Tasks (Frontend)                          | ✅     |
+| 2. Render Project View Page with Tasks (Frontend)   | ✅     |
+| 3. New Project Create (Backend)                     | ✅     |
+| 4. Delete and Update Projects (Backend)             | ✅     |
+
+### Checkpoint 3
+| Task                                                | Status |
+|-----------------------------------------------------|--------|
+| 1. Users CRUD (Backend)                             | ❌     |
+| 2. Tasks CRUD (Backend)                             | ❌     |
+| 3. Create My Tasks Page (Frontend)                  | ❌     |
+| 4. Create Dashboard (Frontend)                      | ❌     |
+
+---
+
 ## Running Tests
 
 ### Backend Tests
@@ -153,3 +186,7 @@ Contributions are always welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for w
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+```
+
+
+
