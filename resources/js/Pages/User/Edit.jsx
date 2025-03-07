@@ -6,20 +6,19 @@ import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create({ auth, User }) {
+export default function Create({ auth, user }) {
   const { data, setData, post, errors, reset } = useForm({
-    image: "",
-    name: User.name || "",
-    status: User.status || "",
-    description: User.description || "",
-    due_date: User.due_date || "",
+    name: user.name || "",
+    email: user.email || "",
+    password: "",
+    password_confirmation: "",
     _method: "PUT",
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    post(route("User.update", User.id));
+    post(route("user.update", user.id));
   };
 
   return (
@@ -28,7 +27,7 @@ export default function Create({ auth, User }) {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Edit User "{User.name}"
+            Edit user "{user.name}"
           </h2>
         </div>
       }
@@ -42,30 +41,11 @@ export default function Create({ auth, User }) {
               onSubmit={onSubmit}
               className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
             >
-              {User.image_path && (
-                <div className="mb-4">
-                  <img src={User.image_path} className="w-64" />
-                </div>
-              )}
-              <div>
-                <InputLabel
-                  htmlFor="User_image_path"
-                  value="User Image"
-                />
-                <TextInput
-                  id="User_image_path"
-                  type="file"
-                  name="image"
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("image", e.target.files[0])}
-                />
-                <InputError message={errors.image} className="mt-2" />
-              </div>
               <div className="mt-4">
-                <InputLabel htmlFor="User_name" value="User Name" />
+                <InputLabel htmlFor="user_name" value="User Name" />
 
                 <TextInput
-                  id="User_name"
+                  id="user_name"
                   type="text"
                   name="name"
                   value={data.name}
@@ -77,105 +57,60 @@ export default function Create({ auth, User }) {
                 <InputError message={errors.name} className="mt-2" />
               </div>
               <div className="mt-4">
-                <InputLabel
-                  htmlFor="User_description"
-                  value="User Description"
-                />
-
-                <TextAreaInput
-                  id="User_description"
-                  name="description"
-                  value={data.description}
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("description", e.target.value)}
-                />
-
-                <InputError message={errors.description} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel
-                  htmlFor="User_due_date"
-                  value="User Deadline"
-                />
+                <InputLabel htmlFor="user_email" value="User Email" />
 
                 <TextInput
-                  id="User_due_date"
-                  type="date"
-                  name="due_date"
-                  value={data.due_date}
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("due_date", e.target.value)}
-                />
-<InputError message={errors.image} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel htmlFor="User_name" value="User Name" />
-
-                <TextInput
-                  id="User_name"
+                  id="user_email"
                   type="text"
-                  name="name"
-                  value={data.name}
+                  name="email"
+                  value={data.email}
                   className="mt-1 block w-full"
-                  isFocused={true}
-                  onChange={(e) => setData("name", e.target.value)}
+                  onChange={(e) => setData("email", e.target.value)}
                 />
 
-                <InputError message={errors.name} className="mt-2" />
+                <InputError message={errors.email} className="mt-2" />
               </div>
+
+              <div className="mt-4">
+                <InputLabel htmlFor="user_password" value="Password" />
+
+                <TextInput
+                  id="user_password"
+                  type="password"
+                  name="password"
+                  value={data.password}
+                  className="mt-1 block w-full"
+                  onChange={(e) => setData("password", e.target.value)}
+                />
+
+                <InputError message={errors.password} className="mt-2" />
+              </div>
+
               <div className="mt-4">
                 <InputLabel
-                  htmlFor="User_description"
-                  value="User Description"
-                />
-
-                <TextAreaInput
-                  id="User_description"
-                  name="description"
-                  value={data.description}
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("description", e.target.value)}
-                />
-
-                <InputError message={errors.description} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel
-                  htmlFor="User_due_date"
-                  value="User Deadline"
+                  htmlFor="user_password_confirmation"
+                  value="Confirm Password"
                 />
 
                 <TextInput
-                  id="User_due_date"
-                  type="date"
-                  name="due_date"
-                  value={data.due_date}
+                  id="user_password_confirmation"
+                  type="password"
+                  name="password_confirmation"
+                  value={data.password_confirmation}
                   className="mt-1 block w-full"
-                  onChange={(e) => setData("due_date", e.target.value)}
+                  onChange={(e) =>
+                    setData("password_confirmation", e.target.value)
+                  }
                 />
 
-                <InputError message={errors.due_date} className="mt-2" />
-              </div>
-              <div className="mt-4">
-                <InputLabel htmlFor="User_status" value="User Status" />
-
-                <SelectInput
-                  name="status"
-                  id="User_status"
-                  className="mt-1 block w-full"
-                  onChange={(e) => setData("status", e.target.value)}
-                >
-                  <option value="">Select Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="in_progress">In Progress</option>
-                  <option value="completed">Completed</option>
-                </SelectInput>
-
-                <InputError message={errors.User_status} className="mt-2" />
+                <InputError
+                  message={errors.password_confirmation}
+                  className="mt-2"
+                />
               </div>
               <div className="mt-4 text-right">
                 <Link
-                  href={route("User.index")}
+                  href={route("user.index")}
                   className="bg-gray-100 py-1 px-3 text-gray-800 rounded shadow transition-all hover:bg-gray-200 mr-2"
                 >
                   Cancel
@@ -190,5 +125,4 @@ export default function Create({ auth, User }) {
       </div>
     </AuthenticatedLayout>
   );
-}
-              
+} 
