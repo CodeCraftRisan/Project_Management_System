@@ -69,9 +69,7 @@ class TaskController extends Controller
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
         if ($image) {
-            if ($image instanceof \Illuminate\Http\UploadedFile) {
-                $data['image_path'] = $image->store('task/' . Str::random(), 'public');
-            }
+            $data['image_path'] = $image->store('task/' . Str::random(), 'public');
         }
         Task::create($data);
 
@@ -140,7 +138,7 @@ class TaskController extends Controller
 
     public function myTasks()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $query = Task::query()->where('assigned_user_id', $user->id);
 
         $sortField = request("sort_field", 'created_at');
